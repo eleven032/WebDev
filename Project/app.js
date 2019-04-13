@@ -1,4 +1,5 @@
 const express = require("express");
+var path = require('path');
 const bodyParser = require("body-parser");
 const taskController = require("./controllers/TaskController");
 
@@ -12,6 +13,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // API ENDPOINTS
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, '../project/public', 'homepage.html'))
+})
+
+
 
 app
   .route("/tasks")
