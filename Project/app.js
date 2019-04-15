@@ -1,35 +1,46 @@
-const express = require("express");
+var express = require('express');
 var path = require('path');
-const bodyParser = require("body-parser");
-const taskController = require("./controllers/TaskController");
+// var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 
-// db instance connection
-require("./config/db");
+var login = require('./routes/login');
+var admin = require('./routes/admin')
 
-const app = express();
+var app = express();
 
-const port = process.env.PORT || 3301;
-app.use(bodyParser.urlencoded({ extended: true }));
+// // 设置模版引擎
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
+
+app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-// API ENDPOINTS
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, '../project/public', 'homepage.html'))
-})
+// 启用自定义的路由中间件
+app.use(login.get);
+app.use(login.post);
+// app.use(admin.get);
 
-
-
-app
-  .route("/tasks")
-  .get(taskController.listAllTasks)
-  .post(taskController.createNewTask);
-
-app
-  .route("/tasks/:taskid")
-  .get(taskController.readTask)
-  .put(taskController.updateTask)
-  .delete(taskController.deleteTask);
-
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+// 捕获404错误，并交由错误处理器处理
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
+
+// 错误处理器
+app.use(function(err, req, res, next) {
+  // 只有在开发模式下才提供错误信息
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // 渲染错误页面
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;
