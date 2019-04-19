@@ -1,5 +1,10 @@
 <%include partials/header%>
-
+<div class="container">
+    <header class="jumbotron">
+    <h1>Welcome to YelpCamp!</h1>
+    <p>View it all over the world</p>
+    <a href="/campgrounds/new" class="btn btn-primary btn-large">Add New Campground</a>
+</header>
 <% arr.forEach(function(whale){%>
     <div>
         <h4>   <%= whale.name%>   </h4>
@@ -7,4 +12,5 @@
     </div>
 
 <% })  %>
+</div>
 <%include partials/footer%>
