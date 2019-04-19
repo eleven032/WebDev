@@ -1,0 +1,10 @@
+<%include partials/header%>
+
+<% arr.forEach(function(whale){%>
+    <div>
+        <h4>   <%= whale.name%>   </h4>
+        <img src="<%= whale.image %>">
+    </div>
+
+<% })  %>
+<%include partials/footer%>
