@@ -1,0 +1,21 @@
+{
+  "name": "mern-shopping-list",
+  "version": "1.0.0",
+  "description": "Practice react",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "Arthur",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}
