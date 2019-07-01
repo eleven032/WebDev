@@ -1,4 +1,6 @@
 import pandas as pd
+
+
 df = pd.read_csv('disaster_1811_1820.csv')
 
 for i in range(0, len(df)):
