@@ -34,11 +34,6 @@ for file in files:
         for x in rows[1:]:
             x.append(0)
 
-        # check which column to insert data
-        # for example
-        # if row is like [year, fl,pa,xx]
-        # then pos is 3
-        # we only insert data at 3rd position
     pos = int(len(rows[0])-1)
 
     # get each line data
@@ -48,17 +43,6 @@ for file in files:
             index = int(318-(2019-int(df.iloc[i][0])))+1
             rows[index][pos] = int(df.iloc[i][1])
 
-
-#                     position = int(2019-df.iloc[i][0]-1)
-#                     print(position)
-#                     rows[position][index-1] = df.iloc[i][1];
-
-#                 #                         rows.append([df.iloc[i][0], df.iloc[i][1]])
-#                 # final_rows = [rows[0]]
-#                 # for i in range(1, len(rows)):
-#                 #         while(not rows[i][0] == final_rows[-1][0]+1):
-#                 #                 final_rows.append([final_rows[-1][0]+1, 0])
-#                 #         final_rows.append(rows[i])
 
 # save to result file
 filename = 'result_'+keyword+'.csv'
@@ -71,7 +55,7 @@ for row in rows:
     placeholder = placeholder[0:-1]
     placeholder += '\n'
     f.write(placeholder)
-f.close() 
+f.close()
 
 
 
