@@ -5,7 +5,7 @@ import csv
 # path need to be the place you save the data files set
 path = 'C:/Users/Arthur/Desktop/WebDev/lab/data'
 files = os.listdir(path)
-
+keyword = ''
 # first line first elemnt is year tag
 rows = [['Year']]
 
@@ -18,6 +18,7 @@ for x in range(1701, 2020):
 # get into file dir
 for file in files:
         # file path is based on your place
+    keyword = file.split('_')[0]
     df = pd.read_csv('data/'+file)
 
 
@@ -60,7 +61,8 @@ for file in files:
 #                 #         final_rows.append(rows[i])
 
 # save to result file
-f = open('result.csv', 'w+')
+filename = 'result_'+keyword+'.csv'
+f = open(filename, 'w+')
 for row in rows:
     res = map(lambda a: str(a), row)
     placeholder = ''
@@ -69,4 +71,13 @@ for row in rows:
     placeholder = placeholder[0:-1]
     placeholder += '\n'
     f.write(placeholder)
-f.close()
+f.close() 
+
+
+
+# path is the dir that where all download file saved 
+filelist = [ f for f in os.listdir(path) ]
+for f in filelist:
+    if not os.path.isdir(os.path.join(path, f)):  
+        os.remove(os.path.join(path, f))
+
