@@ -3,7 +3,8 @@ import os
 import csv
 
 # path need to be the place you save the data files set
-path = 'C:/Users/Arthur/Desktop/WebDev/lab/data'
+path = 'C:/Users/Arthur/Downloads'
+
 files = os.listdir(path)
 keyword = ''
 # first line first elemnt is year tag
@@ -18,12 +19,13 @@ for x in range(1701, 2020):
 # get into file dir
 for file in files:
         # file path is based on your place
-    keyword = file.split('_')[0]
+    
     df = pd.read_csv('data/'+file)
 
 
 #     split file name by _
     tmp = file.split('_')
+    keyword = tmp[0]
     location = tmp[1]
     start = tmp[2]
     end = tmp[3][:-4]

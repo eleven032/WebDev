@@ -42,6 +42,9 @@ for keyword in keywords:
     lines = text_file.readlines()
     location_list=lines[0].split(',')
 
+    os.remove(file_path);
+
+
     for location in location_list:
         # go through the location list
         for date in range(1751, 2031, timespan):
