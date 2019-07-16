@@ -22,4 +22,16 @@ testdb.all=()=>{
     })
 };
 
+
+testdb.keyword_all=(keyword)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query(`SELECT * FROM info WHERE keyword = ?`,[keyword],(err,results)=>{
+            if(err){
+                return reject(err);
+            } 
+            return resolve(results);
+        })
+    })
+}
+
 module.exports = testdb;
