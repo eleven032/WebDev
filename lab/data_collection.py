@@ -113,11 +113,11 @@ for keyword in keywords:
 
     lines = text_file.readlines()
     location_list = lines[0].split(',')
-    counter = 0
+    # counter = 0
     for location in location_list:
-        if(counter >5):
-            break
-        counter+=1    
+        # if(counter >5):
+        #     break
+        # counter+=1    
         # go through the location list
         for date in range(START_YEAR, END_YEAR, timespan):
 
