@@ -1,0 +1,15 @@
+{
+  "name": "back_end",
+  "version": "1.0.0",
+  "description": "connect to databases and create api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arthur",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
