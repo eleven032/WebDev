@@ -31,3 +31,19 @@
     transform: rotate(360deg);
   }
 }
+
+
+.searchBox {
+  width: 400px;
+  height: 100%;
+  margin: 0 auto;
+}
+.searchBox input {
+  width: 100%;
+  height: 30px;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 2px;
+  font-size: 14px;
+}
+

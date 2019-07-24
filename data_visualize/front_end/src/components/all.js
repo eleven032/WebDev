@@ -3,29 +3,30 @@ import axios from 'axios';
 import { Column, Table } from 'react-virtualized';
 import 'react-virtualized/styles.css';
 
-class Data extends Component {
-  constructor(props) {
-    super(props);
-    console.log(props);
-  }
+// class Data extends Component {
+//   constructor(props) {
+//     super(props);
+//     console.log(props);
+//   }
 
-  render() {
-    return (
-      <tr>
-        <td>{this.props.data.keyword}</td>
-        <td>{this.props.data.location}</td>
-        <td>{this.props.data.year}</td>
-        <td>{this.props.data.freq}</td>
-      </tr>
-    )
-  }
-}
+//   render() {
+//     return (
+//       <tr>
+//         <td>{this.props.data.keyword}</td>
+//         <td>{this.props.data.location}</td>
+//         <td>{this.props.data.year}</td>
+//         <td>{this.props.data.freq}</td>
+//       </tr>
+//     )
+//   }
+// }
 
 class DataList extends Component {
 
   constructor(props) {
     super(props);
     this.state = { datas: [] };
+    
   }
 
   componentDidMount() {
@@ -73,8 +74,8 @@ class DataList extends Component {
                     </tbody>
                 </table> */}
         <Table
-          width={300}
-          height={300}
+          width={800}
+          height={800}
           headerHeight={20}
           rowHeight={30}
           rowCount={this.state.datas.length}
@@ -83,20 +84,20 @@ class DataList extends Component {
           <Column
             label='Keywords'
             dataKey='keyword'
-            width={100}
+            width={200}
           />
           <Column
-            width={100}
+            width={200}
             label='Location'
             dataKey='location'
           />
           <Column
-            width={100}
+            width={200}
             label='Year'
             dataKey='year'
           />
           <Column
-            width={100}
+            width={200}
             label='Freq'
             dataKey='freq'
           />
