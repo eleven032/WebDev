@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Column, Table } from 'react-virtualized';
-import 'react-virtualized/styles.css';
-
+import Res from './test/res';
 
 class Search extends Component {
     constructor(props) {
@@ -11,79 +9,51 @@ class Search extends Component {
             keyword: "",
             datas: []
         };
-        this.handleSearchTextUpdate = this.handleSearchTextUpdate.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        // this.getInfo = this.getInfo.bind(this);
     }
 
+    // getInfo = () => {
 
-    componentDidMount() {
+    // }
+
+    handleInputChange = () => {
         this.setState({
-            keyword: this.props.word
-        });
-        axios.get('http://localhost:4000/api/:' + this.state.keyword)
-            .then(response => {
-                console.log(response);
-                this.setState({ datas: response.data });
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+            keyword: this.search.value
+        })
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            keyword: nextProps.word
-        });
-        axios.get('http://localhost:4000/api/:' + this.state.keyword)
-            .then(response => {
-                console.log(response);
-                this.setState({ datas: response.data });
+    handleSubmit(event) {
+        // this.getInfo();
+        axios.get(`http://localhost:4000/api/${this.state.keyword}`)
+            .then(res => {
+                this.setState({
+                    datas: res.data
+                })
+                // console.log(res.data)
+                // console.log(this.state.datas)
             })
-            .catch(function (error) {
-                console.log(error);
-            })
+            // console.log(this.state.datas)
+        event.preventDefault();
+
     }
 
-
-    handleSearchTextUpdate (searchText) {
-        
-        this.setState({keyword:searchText});
-      };
 
     render() {
+        // console.log(this.state.datas)
         return (
-            <div className="searchBox">
-                <input type="text" placeholder="type in keywords to search" onSearchTextUpdate={this.handleSearchTextUpdate}/>
-                <Table
-                    width={800}
-                    height={800}
-                    headerHeight={20}
-                    rowHeight={30}
-                    rowCount={this.state.datas.length}
-                    rowGetter={({ index }) => this.state.datas[index]}
-                >
-                    <Column
-                        label='Keywords'
-                        dataKey='keyword'
-                        width={200}
-                    />
-                    <Column
-                        width={200}
-                        label='Location'
-                        dataKey='location'
-                    />
-                    <Column
-                        width={200}
-                        label='Year'
-                        dataKey='year'
-                    />
-                    <Column
-                        width={200}
-                        label='Freq'
-                        dataKey='freq'
-                    />
+            <form onSubmit={this.handleSubmit}>
+                <input
+                    placeholder="Search for..."
+                    ref={input => this.search = input}
+                    onChange={this.handleInputChange}
+                />
+                <input type="submit" value="Submit" />
+                <Res results={this.state.datas} />
 
-                </Table>
-            </div>
+            </form>
+
 
         );
     }

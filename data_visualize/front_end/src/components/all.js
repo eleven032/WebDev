@@ -3,23 +3,6 @@ import axios from 'axios';
 import { Column, Table } from 'react-virtualized';
 import 'react-virtualized/styles.css';
 
-// class Data extends Component {
-//   constructor(props) {
-//     super(props);
-//     console.log(props);
-//   }
-
-//   render() {
-//     return (
-//       <tr>
-//         <td>{this.props.data.keyword}</td>
-//         <td>{this.props.data.location}</td>
-//         <td>{this.props.data.year}</td>
-//         <td>{this.props.data.freq}</td>
-//       </tr>
-//     )
-//   }
-// }
 
 class DataList extends Component {
 
